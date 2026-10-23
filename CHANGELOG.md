@@ -2,7 +2,7 @@
 
 ## v0.1 — 2026-10-23
 
-Initial public release of Emotion Atlas.
+Initial public release of Emotional Atlas.
 
 - GPT-6 Luna paragraph inference with contextual evidence and emotional decomposition.
 - Interactive 3D emotional plot with clickable points and synchronized 2× expansion.

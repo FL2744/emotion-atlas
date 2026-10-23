@@ -1,4 +1,4 @@
-# Emotion Atlas
+# Emotional Atlas
 
 A native Python desktop app for exploring emotional content in dreams and literature using **gpt-6-luna** inference. No web server, browser, or third-party Python packages are required.
 

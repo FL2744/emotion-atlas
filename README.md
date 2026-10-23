@@ -1,10 +1,10 @@
-<p align="center"><img src="assets/emotion-atlas-icon.png" width="150" alt="Emotion Atlas constellation icon"></p>
+<p align="center"><img src="assets/emotional-atlas-logo.png" width="100%" alt="Emotional Atlas — constellation icon and retro white wordmark on royal blue"></p>
 
-# Emotion Atlas
+# Emotional Atlas
 
 **Explore emotional shifts in dreams and literature, paragraph by paragraph.**
 
-Emotion Atlas is a native desktop application that uses **GPT-6 Luna** to infer emotional meaning, identify supporting words and passages, and map paragraphs in an interactive 3D space. It includes text-order animation, PCA views, and resumable analysis sessions in a retro royal-blue interface.
+Emotional Atlas is a native desktop application that uses **GPT-6 Luna** to infer emotional meaning, identify supporting words and passages, and map paragraphs in an interactive 3D space. It includes text-order animation, PCA views, and resumable analysis sessions in a retro royal-blue interface.
 
 [Download macOS v0.1](https://github.com/FL2744/emotion-atlas/releases/tag/v0.1) · [User guide](docs/USER_GUIDE.md) · [Release notes](CHANGELOG.md)
 
@@ -23,8 +23,8 @@ Emotion Atlas is a native desktop application that uses **GPT-6 Luna** to infer 
 
 The v0.1 binary targets **Apple Silicon (arm64), macOS 15 or later**. It was built and smoke-tested on macOS 15.6. Intel and other operating systems do not have packaged releases yet.
 
-1. Download `Emotion-Atlas-v0.1-macOS-arm64.zip` from the [v0.1 release](https://github.com/FL2744/emotion-atlas/releases/tag/v0.1).
-2. Extract the ZIP and drag **Emotion Atlas.app** into Applications.
+1. Download `Emotional-Atlas-v0.1-macOS-arm64.zip` from the [v0.1 release](https://github.com/FL2744/emotion-atlas/releases/tag/v0.1).
+2. Extract the ZIP and drag **Emotional Atlas.app** into Applications.
 3. Open the app.
 
 Python and Tk are bundled; no separate Python installation is needed for this download. The release is **ad-hoc signed, not Developer ID signed or notarized by Apple**. macOS may initially block it. If you trust this release, use macOS **System Settings → Privacy & Security → Open Anyway** after attempting to open it. Do not disable Gatekeeper globally. A SHA-256 checksum accompanies the download.
@@ -87,10 +87,10 @@ python -m pip install -r requirements-build.txt
 bash scripts/build_macos.sh
 ```
 
-The build creates `dist/Emotion Atlas.app` and a ZIP in `release/`. It uses PyInstaller and does not require an API key. The app provides an explicit offline release check:
+The build creates `dist/Emotional Atlas.app` and a ZIP in `release/`. It uses PyInstaller and does not require an API key. The app provides an explicit offline release check:
 
 ```bash
-'dist/Emotion Atlas.app/Contents/MacOS/Emotion Atlas' --smoke-test /tmp/emotion-atlas-smoke.json
+'dist/Emotional Atlas.app/Contents/MacOS/Emotional Atlas' --smoke-test /tmp/emotion-atlas-smoke.json
 ```
 
 The smoke test opens and closes its own test window and checks the icon, controls, plot expansion, PCA, and playback using synthetic data. It sends no requests. Unit tests use simulated API responses; live model quality is not proven by these tests. An optional NumPy reference test runs when NumPy is available.

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Emotion Atlas — native desktop application. Requires Python 3.10+ with Tk."""
+"""Emotional Atlas — native desktop application. Requires Python 3.10+ with Tk."""
 from __future__ import annotations
 import csv
 import io
@@ -202,7 +202,7 @@ class EmotionPlot(tk.Canvas):
 class Atlas(tk.Tk):
     def __init__(self):
         super().__init__()
-        self.title('Emotion Atlas v0.1 · GPT-6 Luna')
+        self.title('Emotional Atlas v0.1 · GPT-6 Luna')
         self.geometry('1390x920')
         self.minsize(1030,720)
         self.configure(background=BG)
@@ -284,7 +284,7 @@ class Atlas(tk.Tk):
 
     def build(self):
         top=ttk.Frame(self,padding=(22,18,22,12)); top.pack(fill='x')
-        ttk.Label(top,text='◈  Emotion Atlas',style='Title.TLabel').pack(side='left')
+        ttk.Label(top,text='◈  Emotional Atlas',style='Title.TLabel').pack(side='left')
         ttk.Label(top,text='DREAMS  /  LITERATURE  /  SEMANTIC INFERENCE',style='Muted.TLabel').pack(side='left',padx=22)
         ttk.Button(top,text='Method',command=self.method).pack(side='right')
         outer=ttk.Panedwindow(self,orient='horizontal'); outer.pack(fill='both',expand=True,padx=18)
@@ -559,7 +559,7 @@ class Atlas(tk.Tk):
         width,height,fitted=expanded_plot_size(self.plot.winfo_width(),self.plot.winfo_height(),
                                               self.winfo_screenwidth()-80,self.winfo_screenheight()-240)
         win=tk.Toplevel(self);self.expanded_window=win
-        win.title('Emotion Atlas · Expanded plot');win.configure(background=BG)
+        win.title('Emotional Atlas · Expanded plot');win.configure(background=BG)
         win.geometry(f'{width}x{height+132}')
         win.protocol('WM_DELETE_WINDOW',self.close_expanded_plot)
         win.bind('<Escape>',lambda event:self.close_expanded_plot())
