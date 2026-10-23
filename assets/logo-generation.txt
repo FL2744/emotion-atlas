@@ -5,3 +5,6 @@ Use case: logo-brand. Create a polished horizontal README logo banner, 3:1 aspec
 
 
 v0.2: Recolored existing logo to black, white, and gray with imagegen, preserving the Emotional Atlas wordmark and constellation composition.
+
+
+v0.3: Imagegen localized recolor: alternating red and blue constellation spheres. Preserve grayscale surroundings, composition, transparency, and white lettering.

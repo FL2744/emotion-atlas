@@ -20,9 +20,9 @@ BG = '#161616'
 PANEL = '#242424'
 TEXT = '#ffffff'
 MUTED = '#bbbbbb'
-TEAL = '#eeeeee'
+POSITIVE_COLOR = '#619bff'
 BLUE = '#dddddd'
-CORAL = '#888888'
+NEGATIVE_COLOR = '#ff6464'
 GOLD = '#dddddd'
 PLOT_BG = '#080808'
 PLOT_TEXT = '#eeeeee'
@@ -30,7 +30,7 @@ PLOT_MUTED = '#aaaaaa'
 
 
 def color(valence):
-    a, b = ((136, 136, 136), (187, 187, 187)) if valence < 0 else ((187, 187, 187), (238, 238, 238))
+    a, b = ((255, 100, 100), (187, 187, 187)) if valence < 0 else ((187, 187, 187), (97, 155, 255))
     t = valence + 1 if valence < 0 else valence
     return '#%02x%02x%02x' % tuple(round(x + (y-x)*t) for x, y in zip(a, b))
 
@@ -202,7 +202,7 @@ class EmotionPlot(tk.Canvas):
 class Atlas(tk.Tk):
     def __init__(self):
         super().__init__()
-        self.title('Emotional Atlas v0.2 · GPT-6 Luna')
+        self.title('Emotional Atlas v0.3 · GPT-6 Luna')
         self.geometry('1390x920')
         self.minsize(1030,720)
         self.configure(background=BG)
@@ -250,7 +250,7 @@ class Atlas(tk.Tk):
         style.configure('Card.TFrame',background=PANEL,padding=10,relief='solid',borderwidth=1,bordercolor='#777777')
         style.configure('TLabel',background=BG,foreground=TEXT)
         style.configure('Muted.TLabel',foreground=MUTED,font=('Menlo',10))
-        style.configure('Title.TLabel',font=('Menlo',23,'bold'),foreground=TEXT)
+        style.configure('Title.TLabel',font=('Menlo',23,'bold'),foreground=POSITIVE_COLOR)
         style.configure('Heading.TLabel',font=('Menlo',12,'bold'),foreground='#ffffff')
         style.configure('TButton',background='#414141',foreground=TEXT,padding=(10,7),borderwidth=2,relief='raised',bordercolor='#999999',lightcolor='#999999',darkcolor='#111111')
         style.map('TButton',background=[('disabled','#303030'),('pressed','#282828'),('active','#555555')],foreground=[('disabled','#999999'),('active',TEXT)],relief=[('pressed','sunken')])
@@ -285,7 +285,7 @@ class Atlas(tk.Tk):
     def build(self):
         top=ttk.Frame(self,padding=(22,18,22,12)); top.pack(fill='x')
         ttk.Label(top,text='◈  Emotional Atlas',style='Title.TLabel').pack(side='left')
-        ttk.Label(top,text='DREAMS  /  LITERATURE  /  SEMANTIC INFERENCE',style='Muted.TLabel').pack(side='left',padx=22)
+        ttk.Label(top,text='DREAMS  /  LITERATURE  /  SEMANTIC INFERENCE',style='Muted.TLabel',foreground=NEGATIVE_COLOR).pack(side='left',padx=22)
         ttk.Button(top,text='Method',command=self.method).pack(side='right')
         outer=ttk.Panedwindow(self,orient='horizontal'); outer.pack(fill='both',expand=True,padx=18)
         left=ttk.Frame(outer,width=360,padding=(0,0,16,0)); outer.add(left,weight=0)
@@ -338,9 +338,9 @@ class Atlas(tk.Tk):
         self.plot.on_draw=self.sync_expanded_plot
 
         legend=ttk.Frame(right);legend.pack(fill='x',pady=6)
-        ttk.Label(legend,text='● Negative',foreground=CORAL).pack(side='left',padx=8)
+        ttk.Label(legend,text='● Negative',foreground=NEGATIVE_COLOR).pack(side='left',padx=8)
         ttk.Label(legend,text='● Neutral',foreground=MUTED).pack(side='left',padx=8)
-        ttk.Label(legend,text='● Positive',foreground=TEAL).pack(side='left',padx=8)
+        ttk.Label(legend,text='● Positive',foreground=POSITIVE_COLOR).pack(side='left',padx=8)
         ttk.Label(legend,text='One point = one paragraph',style='Muted.TLabel').pack(side='right',padx=10)
         playback=ttk.Frame(right);playback.pack(fill='x',pady=(4,4))
         self.play_btn=ttk.Button(playback,text='▶ Play',command=self.toggle_playback)

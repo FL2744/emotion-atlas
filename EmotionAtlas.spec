@@ -11,7 +11,7 @@ exe = EXE(pyz, a.scripts, [], exclude_binaries=True, name='Emotional Atlas', deb
           target_arch='arm64', codesign_identity=None, entitlements_file=None)
 coll = COLLECT(exe, a.binaries, a.datas, strip=False, upx=False, name='Emotional Atlas')
 app = BUNDLE(coll, name='Emotional Atlas.app', icon=str(root/'assets/emotion-atlas.icns'),
-    bundle_identifier='com.github.FL2744.emotion-atlas', version='0.2',
-    info_plist={'CFBundleDisplayName':'Emotional Atlas', 'CFBundleShortVersionString':'0.2',
-                'CFBundleVersion':'2', 'LSMinimumSystemVersion':'15.0',
+    bundle_identifier='com.github.FL2744.emotion-atlas', version='0.3',
+    info_plist={'CFBundleDisplayName':'Emotional Atlas', 'CFBundleShortVersionString':'0.3',
+                'CFBundleVersion':'3', 'LSMinimumSystemVersion':'15.0',
                 'NSHighResolutionCapable':True, 'NSHumanReadableCopyright':'Copyright 2026 Emotional Atlas contributors'})

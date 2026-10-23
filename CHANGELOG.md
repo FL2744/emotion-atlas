@@ -1,5 +1,12 @@
 # Changelog
 
+## v0.3 — 2026-10-23
+
+- Restored colored plot points: red for negative valence, gray for neutral, and blue for positive.
+- Colored the app title blue and its Dreams / Literature / Semantic Inference subtitle red.
+- Added red and blue constellation points to the icon and README logo.
+- Preserved the grayscale interface, layout, and all existing functionality.
+
 ## v0.2 — 2026-10-23
 
 - Changed the interface, plot, highlights, and scrollbars to black, white, and gray.
