@@ -1,12 +1,12 @@
-<p align="center"><img src="assets/emotional-atlas-logo.png" width="100%" alt="Emotional Atlas — constellation icon and retro white wordmark on royal blue"></p>
+<p align="center"><img src="assets/emotional-atlas-logo.png" width="100%" alt="Emotional Atlas — constellation icon and retro white wordmark in grayscale"></p>
 
 # Emotional Atlas
 
 **Explore emotional shifts in dreams and literature, paragraph by paragraph.**
 
-Emotional Atlas is a native desktop application that uses **GPT-6 Luna** to infer emotional meaning, identify supporting words and passages, and map paragraphs in an interactive 3D space. It includes text-order animation, PCA views, and resumable analysis sessions in a retro royal-blue interface.
+Emotional Atlas is a native desktop application that uses **GPT-6 Luna** to infer emotional meaning, identify supporting words and passages, and map paragraphs in an interactive 3D space. It includes text-order animation, PCA views, and resumable analysis sessions in a retro black, white, and gray interface.
 
-[Download macOS v0.1](https://github.com/FL2744/emotion-atlas/releases/tag/v0.1) · [User guide](docs/USER_GUIDE.md) · [Release notes](CHANGELOG.md)
+[Download macOS v0.2](https://github.com/FL2744/emotion-atlas/releases/tag/v0.2) · [User guide](docs/USER_GUIDE.md) · [Release notes](CHANGELOG.md)
 
 ## Features
 
@@ -21,9 +21,9 @@ Emotional Atlas is a native desktop application that uses **GPT-6 Luna** to infe
 
 ## Install on macOS
 
-The v0.1 binary targets **Apple Silicon (arm64), macOS 15 or later**. It was built and smoke-tested on macOS 15.6. Intel and other operating systems do not have packaged releases yet.
+The v0.2 binary targets **Apple Silicon (arm64), macOS 15 or later**. It was built and smoke-tested on macOS 15.6. Intel and other operating systems do not have packaged releases yet.
 
-1. Download `Emotional-Atlas-v0.1-macOS-arm64.zip` from the [v0.1 release](https://github.com/FL2744/emotion-atlas/releases/tag/v0.1).
+1. Download `Emotional-Atlas-v0.2-macOS-arm64.zip` from the [v0.2 release](https://github.com/FL2744/emotion-atlas/releases/tag/v0.2).
 2. Extract the ZIP and drag **Emotional Atlas.app** into Applications.
 3. Open the app.
 

@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.2 — 2026-10-23
+
+- Changed the interface, plot, highlights, and scrollbars to black, white, and gray.
+- Updated the application icon and README logo to match the grayscale palette.
+- Preserved the retro layout, analysis, saved sessions, PCA, playback, and expanded plot behavior.
+
 ## v0.1 — 2026-10-23
 
 Initial public release of Emotional Atlas.

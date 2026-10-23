@@ -2,3 +2,6 @@ Created with the built-in Image Generation tool.
 
 Prompt:
 Use case: logo-brand. Asset type: macOS desktop application icon for Emotion Atlas, an app mapping emotions in dreams and literature. Create one polished square 1024x1024 icon: a deep midnight-blue rounded-square tile, generous transparent margin around the tile, a simple luminous constellation of 7 bold blue, cyan and one soft coral circular points joined by a flowing subtle curve suggesting an emotional trajectory in 3D. Refined slightly dimensional glass-like finish, crisp silhouette readable at 32px, elegant modern scientific application. No words, no letters, no numerals, no axes labels, no watermark, no mockup, no multiple variations. Genuine transparent background outside the rounded-square tile. Centered composition.
+
+
+v0.2: Recolored the existing icon with imagegen to black, white, and gray, preserving composition and transparency.

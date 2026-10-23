@@ -26,7 +26,7 @@ def run_smoke_test(app_class, report_path):
         assert app.expanded_window is None
         assert not hasattr(app,'book_btn')
         app.dirty=False
-        report_path.write_text(json.dumps({'version':'0.1','status':'passed','checks':[
+        report_path.write_text(json.dumps({'version':'0.2','status':'passed','checks':[
             'native Tk startup','icon','retro controls','paragraph plot','expanded plot synchronization',
             'PCA 2D and 3D','playback from saved-style data','restore plot']},indent=2))
     finally:

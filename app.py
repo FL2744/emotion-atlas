@@ -16,21 +16,21 @@ from analysis import (MODEL, AnalysisError, Cancelled, analyze_resilient_batch, 
                       export_session, load_session, split_paragraphs, gutenberg_body)
 
 BASE = Path(__file__).resolve().parent
-BG = '#1643b8'
-PANEL = '#10338c'
+BG = '#161616'
+PANEL = '#242424'
 TEXT = '#ffffff'
-MUTED = '#d7e5ff'
-TEAL = '#86f0db'
-BLUE = '#9dc8ff'
-CORAL = '#ffb3a8'
-GOLD = '#ffe59a'
-PLOT_BG = '#101b24'
-PLOT_TEXT = '#e3ebe8'
-PLOT_MUTED = '#97aeb9'
+MUTED = '#bbbbbb'
+TEAL = '#eeeeee'
+BLUE = '#dddddd'
+CORAL = '#888888'
+GOLD = '#dddddd'
+PLOT_BG = '#080808'
+PLOT_TEXT = '#eeeeee'
+PLOT_MUTED = '#aaaaaa'
 
 
 def color(valence):
-    a, b = ((243, 155, 148), (153, 176, 188)) if valence < 0 else ((153, 176, 188), (117, 214, 192))
+    a, b = ((136, 136, 136), (187, 187, 187)) if valence < 0 else ((187, 187, 187), (238, 238, 238))
     t = valence + 1 if valence < 0 else valence
     return '#%02x%02x%02x' % tuple(round(x + (y-x)*t) for x, y in zip(a, b))
 
@@ -143,20 +143,20 @@ class EmotionPlot(tk.Canvas):
         self.delete('all')
         if self.mode == 'PCA 2D':
             for tick in (-1,-.5,0,.5,1):
-                self.line3((tick,-1,0),(tick,1,0),'#2a3c48')
-                self.line3((-1,tick,0),(1,tick,0),'#2a3c48')
+                self.line3((tick,-1,0),(tick,1,0),'#333333')
+                self.line3((-1,tick,0),(1,tick,0),'#333333')
             self.line3((-1,0,0),(1,0,0),PLOT_MUTED)
             self.line3((0,-1,0),(0,1,0),PLOT_MUTED)
         else:
             for tick in (-1,-.5,0,.5,1):
-                self.line3((tick,-1,-1),(tick,1,-1),'#2a3c48')
-                self.line3((-1,tick,-1),(1,tick,-1),'#2a3c48')
+                self.line3((tick,-1,-1),(tick,1,-1),'#333333')
+                self.line3((-1,tick,-1),(1,tick,-1),'#333333')
             for x in (-1,1):
                 for y in (-1,1):
-                    self.line3((x,y,-1),(x,y,1),'#283a46',dash=(3,5))
-            self.line3((-1,-1,-1),(1,-1,-1),'#9cb9b4',2)
-            self.line3((-1,-1,-1),(-1,1,-1),'#9cb9b4',2)
-            self.line3((-1,-1,-1),(-1,-1,1),'#9cb9b4',2)
+                    self.line3((x,y,-1),(x,y,1),'#303030',dash=(3,5))
+            self.line3((-1,-1,-1),(1,-1,-1),'#aaaaaa',2)
+            self.line3((-1,-1,-1),(-1,1,-1),'#aaaaaa',2)
+            self.line3((-1,-1,-1),(-1,-1,1),'#aaaaaa',2)
         if self.mode == 'Emotion axes':
             self.label3((0,-1.45,-1),'VALENCE  −1 → +1')
             self.label3((-1.45,0,-1),'DIRECTION\ninward −1 / outward +1')
@@ -173,7 +173,7 @@ class EmotionPlot(tk.Canvas):
         known = [r for r in revealed if self.coordinate(r) is not None]
         if self.show_trail:
             for a,b in consecutive_segments(known):
-                self.line3(self.coordinate(a),self.coordinate(b), '#526e79', 1)
+                self.line3(self.coordinate(a),self.coordinate(b), '#666666', 1)
         self.points = []
         projected = [(self.project(self.coordinate(r)),r) for r in known]
         for (x,y,depth),row in sorted(projected,key=lambda item: -item[0][2]):
@@ -202,7 +202,7 @@ class EmotionPlot(tk.Canvas):
 class Atlas(tk.Tk):
     def __init__(self):
         super().__init__()
-        self.title('Emotional Atlas v0.1 · GPT-6 Luna')
+        self.title('Emotional Atlas v0.2 · GPT-6 Luna')
         self.geometry('1390x920')
         self.minsize(1030,720)
         self.configure(background=BG)
@@ -247,40 +247,40 @@ class Atlas(tk.Tk):
         style.configure('.',background=BG,foreground=TEXT,font=('Menlo',10),borderwidth=1)
         style.configure('TFrame',background=BG)
         style.configure('Panel.TFrame',background=PANEL)
-        style.configure('Card.TFrame',background=PANEL,padding=10,relief='solid',borderwidth=1,bordercolor='#83afff')
+        style.configure('Card.TFrame',background=PANEL,padding=10,relief='solid',borderwidth=1,bordercolor='#777777')
         style.configure('TLabel',background=BG,foreground=TEXT)
         style.configure('Muted.TLabel',foreground=MUTED,font=('Menlo',10))
         style.configure('Title.TLabel',font=('Menlo',23,'bold'),foreground=TEXT)
         style.configure('Heading.TLabel',font=('Menlo',12,'bold'),foreground='#ffffff')
-        style.configure('TButton',background='#245bd1',foreground=TEXT,padding=(10,7),borderwidth=2,relief='raised',bordercolor='#95bbff',lightcolor='#95bbff',darkcolor='#08236b')
-        style.map('TButton',background=[('disabled','#294993'),('pressed','#0d2d80'),('active','#3275ed')],foreground=[('disabled','#a6b8e1'),('active',TEXT)],relief=[('pressed','sunken')])
-        style.configure('Accent.TButton',background='#a9d3ff',foreground='#072465')
-        style.map('Accent.TButton',background=[('disabled','#294993'),('pressed','#78b6ff'),('active','#c4e5ff')],foreground=[('disabled','#a6b8e1')])
-        style.configure('TEntry',fieldbackground=PANEL,foreground=TEXT,insertcolor=TEXT,padding=8,borderwidth=2,bordercolor='#95bbff',lightcolor='#95bbff',darkcolor='#08236b')
-        style.configure('TCombobox',fieldbackground=PANEL,background='#245bd1',foreground=TEXT,arrowcolor=TEXT,padding=6,borderwidth=2,bordercolor='#95bbff',lightcolor='#95bbff',darkcolor='#08236b')
+        style.configure('TButton',background='#414141',foreground=TEXT,padding=(10,7),borderwidth=2,relief='raised',bordercolor='#999999',lightcolor='#999999',darkcolor='#111111')
+        style.map('TButton',background=[('disabled','#303030'),('pressed','#282828'),('active','#555555')],foreground=[('disabled','#999999'),('active',TEXT)],relief=[('pressed','sunken')])
+        style.configure('Accent.TButton',background='#dddddd',foreground='#111111')
+        style.map('Accent.TButton',background=[('disabled','#303030'),('pressed','#bbbbbb'),('active','#ffffff')],foreground=[('disabled','#999999')])
+        style.configure('TEntry',fieldbackground=PANEL,foreground=TEXT,insertcolor=TEXT,padding=8,borderwidth=2,bordercolor='#999999',lightcolor='#999999',darkcolor='#111111')
+        style.configure('TCombobox',fieldbackground=PANEL,background='#414141',foreground=TEXT,arrowcolor=TEXT,padding=6,borderwidth=2,bordercolor='#999999',lightcolor='#999999',darkcolor='#111111')
         style.map('TCombobox',fieldbackground=[('readonly',PANEL)],foreground=[('readonly',TEXT)])
         self.option_add('*TCombobox*Listbox.background',PANEL)
         self.option_add('*TCombobox*Listbox.foreground',TEXT)
-        self.option_add('*TCombobox*Listbox.selectBackground','#a9d3ff')
-        self.option_add('*TCombobox*Listbox.selectForeground','#072465')
+        self.option_add('*TCombobox*Listbox.selectBackground','#dddddd')
+        self.option_add('*TCombobox*Listbox.selectForeground','#111111')
         style.configure('Treeview',fieldbackground=PANEL,background=PANEL,foreground=TEXT,rowheight=29)
-        style.configure('Treeview.Heading',background='#245bd1',foreground=TEXT,padding=7,relief='raised')
-        style.map('Treeview',background=[('selected','#a9d3ff')],foreground=[('selected','#072465')])
+        style.configure('Treeview.Heading',background='#414141',foreground=TEXT,padding=7,relief='raised')
+        style.map('Treeview',background=[('selected','#dddddd')],foreground=[('selected','#111111')])
         style.configure('TNotebook',background=BG,borderwidth=1)
-        style.configure('TNotebook.Tab',background='#10338c',foreground=MUTED,padding=(14,8))
-        style.map('TNotebook.Tab',background=[('selected','#245bd1')],foreground=[('selected',TEXT)])
+        style.configure('TNotebook.Tab',background='#242424',foreground=MUTED,padding=(14,8))
+        style.map('TNotebook.Tab',background=[('selected','#414141')],foreground=[('selected',TEXT)])
         style.configure('TCheckbutton',background=BG,foreground=TEXT)
         style.map('TCheckbutton',background=[('active',BG)])
-        style.configure('TSeparator',background='#83afff')
-        style.configure('Horizontal.TProgressbar',background='#a9d3ff',troughcolor=PANEL)
-        style.configure('Horizontal.TScale',background='#a9d3ff',troughcolor=PANEL)
+        style.configure('TSeparator',background='#777777')
+        style.configure('Horizontal.TProgressbar',background='#dddddd',troughcolor=PANEL)
+        style.configure('Horizontal.TScale',background='#dddddd',troughcolor=PANEL)
         style.layout('Modern.Vertical.TScrollbar',[
             ('Vertical.Scrollbar.trough',{'sticky':'ns','children':[
                 ('Vertical.Scrollbar.thumb',{'sticky':'nswe','expand':True})]})])
         style.configure('Modern.Vertical.TScrollbar',width=12,troughcolor=PANEL,
-                        background='#7caeff',borderwidth=1,arrowsize=0,relief='flat',
-                        bordercolor='#c1dcff',lightcolor='#c1dcff',darkcolor='#17428e')
-        style.map('Modern.Vertical.TScrollbar',background=[('pressed','#d5eaff'),('active','#a9d3ff')])
+                        background='#999999',borderwidth=1,arrowsize=0,relief='flat',
+                        bordercolor='#cccccc',lightcolor='#cccccc',darkcolor='#444444')
+        style.map('Modern.Vertical.TScrollbar',background=[('pressed','#eeeeee'),('active','#dddddd')])
 
     def build(self):
         top=ttk.Frame(self,padding=(22,18,22,12)); top.pack(fill='x')
@@ -296,7 +296,7 @@ class Atlas(tk.Tk):
         ttk.Label(left,text='Or paste a dream or passage below.',style='Muted.TLabel').pack(anchor='w',pady=(12,6))
         source_card=ttk.Frame(left,style='Card.TFrame');source_card.pack(fill='both',expand=True)
         self.source=tk.Text(source_card,wrap='word',width=38,height=17,background=PANEL,foreground=TEXT,
-            insertbackground=TEXT,selectbackground='#a9d3ff',selectforeground='#072465',highlightthickness=0,relief='flat',padx=12,pady=12,font=('Menlo',12),undo=True)
+            insertbackground=TEXT,selectbackground='#dddddd',selectforeground='#111111',highlightthickness=0,relief='flat',padx=12,pady=12,font=('Menlo',12),undo=True)
         source_scroll=ttk.Scrollbar(source_card,orient='vertical',style='Modern.Vertical.TScrollbar',command=self.source.yview)
         source_scroll.pack(side='right',fill='y',padx=(5,0))
         self.source.configure(yscrollcommand=source_scroll.set)
@@ -374,12 +374,12 @@ class Atlas(tk.Tk):
         self.tree.bind('<<TreeviewSelect>>',self.tree_select);self.tree.bind('<Double-1>',lambda e:self.inspect())
         detail_card=ttk.Frame(detail_frame,style='Card.TFrame');detail_card.pack(fill='both',expand=True,pady=6)
         self.detail=tk.Text(detail_card,wrap='word',height=12,background=PANEL,foreground=TEXT,
-            relief='flat',highlightthickness=0,selectbackground='#a9d3ff',selectforeground='#072465',padx=8,pady=6,font=('Menlo',12),state='disabled')
+            relief='flat',highlightthickness=0,selectbackground='#dddddd',selectforeground='#111111',padx=8,pady=6,font=('Menlo',12),state='disabled')
         detail_scroll=ttk.Scrollbar(detail_card,orient='vertical',style='Modern.Vertical.TScrollbar',command=self.detail.yview);detail_scroll.pack(side='right',fill='y')
         self.detail.configure(yscrollcommand=detail_scroll.set);self.detail.pack(fill='both',expand=True)
         self.detail.tag_configure('heading',font=('Menlo',13,'bold'),foreground=BLUE,spacing1=12,spacing3=8)
         self.detail.tag_configure('muted',foreground=MUTED,spacing3=8)
-        self.detail.tag_configure('signal',background='#fff0bc',foreground='#483b12')
+        self.detail.tag_configure('signal',background='#dddddd',foreground='#111111')
         self.detail.tag_configure('quote',foreground=GOLD,spacing1=4,spacing3=6)
         foot=ttk.Frame(self,padding=(20,9));foot.pack(fill='x')
         self.progress=ttk.Progressbar(foot,mode='determinate',length=170);self.progress.pack(side='right')
