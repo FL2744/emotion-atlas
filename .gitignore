@@ -1,0 +1,17 @@
+__pycache__/
+*.py[cod]
+.DS_Store
+.venv/
+venv/
+build/
+dist/
+release/
+.env
+.env.*
+*.pem
+*session*.json
+*session*.json.bak
+*results*.json
+*analysis*.json
+emotion-atlas-scores.csv
+emotion-atlas-pca.json
